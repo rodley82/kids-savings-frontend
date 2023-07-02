@@ -9,10 +9,17 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "preact": "^10.13.2"
+    "javascript-time-ago": "^2.5.9",
+    "preact": "^10.13.2",
+    "theme-change": "^2.5.0"
   },
   "devDependencies": {
     "@preact/preset-vite": "^2.5.0",
+    "@tailwindcss/typography": "^0.5.9",
+    "autoprefixer": "^10.4.14",
+    "daisyui": "^3.1.7",
+    "postcss": "^8.4.24",
+    "tailwindcss": "^3.3.2",
     "vite": "^4.3.9"
   }
 }

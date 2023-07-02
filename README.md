@@ -1,19 +1,30 @@
 # Kids Savings
 
-La idea es que desde una google spreadsheet se:
+The idea is to store data as JSON on a Google spreadsheet cell and have have it compute/agregate the savings account for a child, for example a parent could grant it's child 5 USD a week
 
-- Define el periodo y el monto a acreditar de forma periodica
-- Se calcula el balance y almacenan los movimientos de la cuenta
-- Se almacena una pregunta y una respuesta que permiten el acceso a esta info.
+There's a process that is executed periodically gets the cell data, creates to json files and stores/copies somewhere so that it's publicly accessible.
 
-Existe un programa (python) que accede periodicamente a la spreadsheet y genera dos archivos que se almacenan en un hosting que no permite listar sino acceso directo (nginx o S3)
-
-- Archivo publico con la pregunta actual `question.json`
-- Archivo balance cuyo nombre es el sha256sum de la respuesta a la pregunta secreta
-
-
+- `instructions.json` contains a json with one key namely `question` and a string that is the security question for the child, for example: "what is the name of your cousin's pet?"
+- Assuming the answer is `lola` the backend will create a JSON file with the data from the spreadsheet using a command like this:
 
 ```
 echo -n "lola" | sha256sum --text 
 47acf82a48cfa5c340ea536cdd66c75ef85eb8d3fcff468fc7c8abcaceb15ed0  -
+```
+
+The filename in this case will be: `47acf82a48cfa5c340ea536cdd66c75ef85eb8d3fcff468fc7c8abcaceb15ed0.json` and this frontend app will show the question, ask for the answer and out of that answer it'll compute that sha256sum and attempt to fetch that file from the base URL
+
+## Building
+
+Set these two env variables beforehand:
+
+- `BASE_DATA_FILES_ENDPOINT`
+With the base url without the trailing `/` => to be used to reach the json files, for example if set to https://www.google.com then https://www.google.com/instructions.json will be used
+- `ACCOUNT_NAME` Name of the child
+- `FRONT_IMAGE_URL` An absolute URL to customize the image in the center, can be an animated gif
+
+For example:
+
+```
+BASE_DATA_FILES_ENDPOINT=https://www.google.com ACCOUNT_NAME=Juan FRONT_IMAGE_URL=https://images.com/background.gif yarn run build
 ```
