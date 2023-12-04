@@ -18,13 +18,13 @@ The filename in this case will be: `47acf82a48cfa5c340ea536cdd66c75ef85eb8d3fcff
 
 Set these two env variables beforehand:
 
-- `BASE_DATA_FILES_ENDPOINT`
+- `VITE_BASE_DATA_FILES_ENDPOINT`
 With the base url without the trailing `/` => to be used to reach the json files, for example if set to https://www.google.com then https://www.google.com/instructions.json will be used
-- `ACCOUNT_NAME` Name of the child
-- `FRONT_IMAGE_URL` An absolute URL to customize the image in the center, can be an animated gif
+- `VITE_ACCOUNT_NAME` Name of the child
+- `VITE_FRONT_IMAGE_URL` An absolute URL to customize the image in the center, can be an animated gif
 
 For example:
 
 ```
-BASE_DATA_FILES_ENDPOINT=https://www.google.com ACCOUNT_NAME=Juan FRONT_IMAGE_URL=https://images.com/background.gif yarn run build
+VITE_BASE_DATA_FILES_ENDPOINT=https://www.google.com VITE_ACCOUNT_NAME=Juan VITE_FRONT_IMAGE_URL=https://images.com/background.gif yarn run build
 ```
