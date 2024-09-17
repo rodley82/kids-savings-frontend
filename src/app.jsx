@@ -29,7 +29,7 @@ export function App() {
   const passwordPrompt = async () => {
     const question = await fetchQuestion()
     const password = window.prompt(question);
-    return password.toLowerCase()
+    return (question.toLowerCase() + password.toLowerCase())
   }
 
   const clearBeforeQuerying = async () => {
